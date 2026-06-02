@@ -1,6 +1,8 @@
 /* ==========================================
-   CSS RESET & CONFIGURAÇÕES GLOBAIS
+   SISTEMA DE DESIGN & VARIÁVEIS (PREMIUM TECH)
    ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -8,554 +10,836 @@
 }
 
 :root {
-    /* Cores principais */
-    --color-bg-dark: #07070a;
-    --color-bg-card: rgba(13, 17, 28, 0.65);
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-hover: rgba(99, 102, 241, 0.4);
+    --color-bg-space: #07080d;
+    --color-card-bg: rgba(18, 20, 29, 0.6);
+    --color-card-border: rgba(255, 255, 255, 0.05);
     
-    /* Cores do Texto */
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #94a3b8;
+    /* Neon Cores */
+    --color-primary: #8ce600;       /* Verde Lime TaOn (Logo) */
+    --color-secondary: #eefc11;     /* Amarelo/Limão Digital (Logo) */
+    --color-accent: #8b5cf6;        /* Roxo Tech */
+    --color-whatsapp: #22c55e;
+    
+    --color-text-white: #ffffff;
+    --color-text-light: #e2e8f0;
     --color-text-muted: #64748b;
+    --color-text-body: #94a3b8;
     
-    /* Tons Neon / Destaques */
-    --color-primary: #4f46e5;      /* Indigo */
-    --color-primary-glow: rgba(79, 70, 229, 0.35);
-    --color-secondary: #06b6d4;    /* Cyan */
-    --color-secondary-glow: rgba(6, 182, 212, 0.35);
-    --color-whatsapp: #22c55e;     /* Verde WhatsApp */
-    --color-whatsapp-glow: rgba(34, 197, 94, 0.3);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
     
-    /* Fontes */
-    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    
-    /* Transições */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-    background-color: #030205;
-    background-image: 
-        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(225,39%,8%,1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(339,49%,8%,1) 0, transparent 50%),
-        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
-    color: var(--color-text-primary);
+    background-color: var(--color-bg-space);
+    color: var(--color-text-light);
     font-family: var(--font-body);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    line-height: 1.6;
     overflow-x: hidden;
-    position: relative;
-    padding: 40px 20px;
 }
 
 /* ==========================================
-   EFEITOS DE GLOW NO FUNDO (OTIMIZADOS PARA ALTO FPS)
+   FUNDOS, GLOWS & GRADE DIGITAL
    ========================================== */
-.bg-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
+.digital-grid {
+    position: fixed;
+    inset: 0;
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(rgba(140, 230, 0, 0.02) 1.5px, transparent 1.5px);
+    background-size: 32px 32px, 64px 64px;
+    background-position: 0 0, 16px 16px;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.ambient-glows {
+    position: fixed;
+    inset: 0;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.3;
-    transform: translate3d(0, 0, 0); /* Força aceleração 3D por hardware */
+    overflow: hidden;
 }
 
-.bg-glow-1 {
-    width: 400px;
-    height: 400px;
-    top: 2%;
-    left: -150px;
-    background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+.glow-1 {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(140, 230, 0, 0.08) 0%, transparent 70%);
+    transform: translate3d(0,0,0);
+    will-change: transform;
 }
 
-.bg-glow-2 {
-    width: 450px;
-    height: 450px;
-    bottom: 10%;
-    right: -200px;
-    background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+.glow-2 {
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(238, 252, 17, 0.06) 0%, transparent 70%);
+    transform: translate3d(0,0,0);
+    will-change: transform;
 }
 
-.bg-glow-3 {
-    width: 350px;
-    height: 350px;
-    top: 35%;
+.glow-3 {
+    position: absolute;
+    top: 40%;
     left: 50%;
-    transform: translate3d(-50%, 0, 0); /* Alinhamento centralizado com aceleração 3D */
-    background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-    opacity: 0.18;
+    transform: translate3d(-50%, -50%, 0);
+    width: 70vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%);
+    will-change: transform;
 }
 
 /* ==========================================
-   LAYOUT CONTAINER
+   CONTAINERS & BOTÕES
    ========================================== */
 .container {
     width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.btn-primary {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%);
+    background-size: 200% auto;
+    animation: shineGradient 6s linear infinite;
+    color: #040508;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
     align-items: center;
-    gap: 40px;
-    z-index: 10;
+    gap: 8px;
+    box-shadow: 0 8px 24px -6px rgba(0, 255, 98, 0.4);
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -4px rgba(0, 255, 98, 0.6);
+    filter: brightness(1.05);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-white);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 /* ==========================================
-   CABEÇALHO (PROFILE HEADER)
+   MENU SUPERIOR (NAVBAR)
    ========================================== */
-.profile-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeInDown 0.8s ease-out;
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(7, 8, 13, 0.7);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-card-border);
+    transition: var(--transition-smooth);
 }
 
-.avatar-container {
+.navbar.scrolled {
+    padding: 10px 0;
+    background: rgba(7, 8, 13, 0.9);
+    border-bottom-color: rgba(0, 255, 102, 0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    transition: var(--transition-smooth);
+}
+
+.navbar.scrolled .nav-container {
+    height: 65px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.navbar.scrolled .nav-logo img {
+    height: 42px;
+}
+
+.nav-logo-text {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.45rem;
+    color: var(--color-text-white);
+    letter-spacing: -0.04em;
+}
+
+.nav-logo-text span {
+    color: var(--color-primary);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-left: 2px;
+}
+
+.nav-logo-text .power-icon {
+    font-size: 0.85em;
+    color: var(--color-primary);
+    margin: 0 1px;
+    vertical-align: -0.02em;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--color-text-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-smooth);
     position: relative;
-    width: 110px;
-    height: 110px;
+}
+
+.nav-link:hover {
+    color: var(--color-text-white);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-cta-btn {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%);
+    background-size: 200% auto;
+    animation: shineGradient 6s linear infinite;
+    color: #040508;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 255, 98, 0.2);
+}
+
+.nav-cta-btn:hover {
+    color: #040508;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 255, 102, 0.4);
+    filter: brightness(1.05);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text-white);
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================
+   SEÇÃO HERO
+   ========================================== */
+.hero-section {
+    padding-top: 180px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-cols: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: left;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 255, 102, 0.06);
+    border: 1px solid rgba(0, 255, 102, 0.15);
+    padding: 6px 14px;
+    border-radius: 30px;
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-primary);
+    animation: pulse 1.5s infinite alternate;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--color-text-white);
+    letter-spacing: -0.03em;
     margin-bottom: 20px;
 }
 
-.profile-avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.15);
-    background: #0f172a;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    position: relative;
-    z-index: 2;
-}
-
-.avatar-glow {
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    z-index: 1;
-    filter: blur(10px);
-    opacity: 0.65;
-    animation: pulseGlow 4s infinite alternate;
-}
-
-.profile-title {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    background: linear-gradient(to right, #ffffff, #cbd5e1);
+.gradient-text {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-primary) 100%);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 4px;
+    animation: shineGradient 6s linear infinite;
 }
 
-.verified-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #3b82f6, #06b6d4);
-    color: white;
-    font-size: 0.75rem;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+@keyframes shineGradient {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
 }
 
-.profile-username {
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    color: var(--color-secondary);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
-}
-
-.profile-bio-headline {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: -0.01em;
-}
-
-.online-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #22c55e;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0 0 10px var(--color-whatsapp-glow);
-}
-
-.online-dot::after {
-    content: '';
-    position: absolute;
-    inset: -3.5px;
-    border-radius: 50%;
-    border: 1.5px solid var(--color-whatsapp);
-    animation: pulseIndicator 1.8s infinite ease-in-out;
-}
-
-.profile-bio {
-    font-size: 0.95rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    max-width: 480px;
-    text-align: center;
-}
-
-/* ==========================================
-   LINKS CONTAINER & CARD DOS LINKS
-   ========================================== */
-.links-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-.link-card {
-    display: flex;
-    align-items: center;
-    padding: 16px 20px;
-    text-decoration: none;
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 20px;
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    transition: var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-    will-change: transform; /* Avisa o navegador para usar aceleração de GPU na animação */
-}
-
-.link-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.08));
-    opacity: 0;
-    transition: var(--transition-fast);
-}
-
-.link-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    border-color: var(--color-border-hover);
-    box-shadow: 0 12px 30px -10px rgba(79, 70, 229, 0.25),
-                0 0 0 1px rgba(79, 70, 229, 0.15);
-}
-
-.link-card:hover::before {
-    opacity: 1;
-}
-
-/* Ícones nos Links */
-.link-icon-wrapper {
-    width: 48px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-primary);
-    margin-right: 16px;
-    transition: var(--transition-fast);
-    flex-shrink: 0;
-}
-
-.link-card:hover .link-icon-wrapper {
-    background: linear-gradient(135deg, var(--color-primary), rgba(79, 70, 229, 0.5));
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 15px var(--color-primary-glow);
-    color: #ffffff;
-    transform: scale(1.05);
-}
-
-.icon {
-    width: 22px;
-    height: 22px;
-}
-
-.link-text {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.link-title {
-    font-family: var(--font-heading);
+.hero-subtitle {
     font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
+    color: var(--color-text-body);
+    margin-bottom: 36px;
+    max-width: 550px;
 }
 
-.link-subtitle {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
-.arrow-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--color-text-muted);
-    transition: var(--transition-fast);
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.link-card:hover .arrow-icon {
-    color: var(--color-text-primary);
-    transform: translateX(4px);
-}
-
-/* Link Destaque (WhatsApp) */
-.link-card.highlight {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(13, 17, 28, 0.65) 100%);
-    border-color: rgba(34, 197, 94, 0.25);
-}
-
-.link-card.highlight:hover {
-    border-color: rgba(34, 197, 94, 0.6);
-    box-shadow: 0 12px 30px -10px rgba(34, 197, 94, 0.3),
-                0 0 0 1px rgba(34, 197, 94, 0.2);
-}
-
-.link-card.highlight .link-icon-wrapper {
-    background: rgba(34, 197, 94, 0.1);
-    border-color: rgba(34, 197, 94, 0.2);
-    color: var(--color-whatsapp);
-}
-
-.link-card.highlight:hover .link-icon-wrapper {
-    background: linear-gradient(135deg, var(--color-whatsapp), #15803d);
-    border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 15px var(--color-whatsapp-glow);
-    color: white;
-}
-
-.pulse-indicator {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-whatsapp);
+/* Ilustração Tech Flutuante */
+.hero-tech-circle {
+    position: relative;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    position: absolute;
-    right: 22px;
-    top: 22px;
+    background: radial-gradient(circle, rgba(140, 230, 0, 0.1) 0%, transparent 70%);
+    border: 1px dashed rgba(140, 230, 0, 0.2);
+    animation: rotateTech 20s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pulse-indicator::after {
-    content: '';
-    position: absolute;
-    inset: -4px;
+.hero-tech-inner {
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
-    border: 2px solid var(--color-whatsapp);
-    animation: pulseIndicator 1.8s infinite ease-in-out;
+    border: 1px solid rgba(238, 252, 17, 0.15);
+    background: rgba(7, 8, 13, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 30px rgba(0, 229, 255, 0.05);
+}
+
+.hero-tech-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatLogo 4s ease-in-out infinite alternate;
+}
+
+.glow-orb {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, var(--color-primary) 0%, #8ce600 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 25px var(--color-primary), 0 0 50px rgba(140, 230, 0, 0.4);
+    animation: orbPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes orbPulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 20px var(--color-primary), 0 0 40px rgba(140, 230, 0, 0.3);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px var(--color-primary), 0 0 70px rgba(140, 230, 0, 0.6);
+    }
 }
 
 /* ==========================================
-   SEÇÃO PORTFÓLIO E MOCKUP DE CELULAR
+   TÍTULOS DE SEÇÃO
    ========================================== */
-.portfolio-section {
-    width: 100%;
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 24px;
-    padding: 30px 20px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    animation: fadeInUp 0.8s ease-out 0.4s both;
+.section-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 60px auto;
+}
+
+.section-tag {
+    color: var(--color-secondary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+    display: block;
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    background: linear-gradient(to right, #ffffff, var(--color-secondary));
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-text-white);
+    letter-spacing: -0.02em;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+/* ==========================================
+   SEÇÃO SERVIÇOS (CARDS GLASSMORPH)
+   ========================================== */
+.services-grid {
+    display: grid;
+    grid-template-cols: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    padding: 40px 30px;
+    border-radius: 20px;
+    transition: var(--transition-smooth);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(140, 230, 0, 0.15);
+    background-color: rgba(18, 20, 29, 0.8);
+    box-shadow: 0 20px 40px -20px rgba(140, 230, 0, 0.15);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon {
+    font-size: 2.3rem;
+    margin-bottom: 24px;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(140, 230, 0, 0.3));
 }
 
-.section-description {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    text-align: center;
-    max-width: 440px;
-    line-height: 1.5;
-    margin-bottom: 8px;
-}
-
-/* Abas de Navegação (Tabs) */
-.portfolio-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
+.service-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-white);
     margin-bottom: 12px;
 }
 
-.tab-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 8px 14px;
+.service-card p {
     font-size: 0.85rem;
-    font-weight: 600;
-    font-family: var(--font-heading);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    transition: var(--transition-fast);
+    color: var(--color-text-body);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   SEÇÃO PORTFÓLIO (MOCKUP E TABS)
+   ========================================== */
+.portfolio-section {
+    position: relative;
+    padding: 40px 0; /* Compacta a altura vertical do portfólio no desktop */
+}
+
+.portfolio-section .section-header {
+    margin-bottom: 30px; /* Reduz margem inferior do título no desktop */
+}
+
+.portfolio-layout {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 6px;
+    width: 100%;
+}
+
+.portfolio-info {
+    display: none !important; /* Oculta o menu de categorias para focar somente no celular */
+}
+
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px; /* Menu em formato de sanduíche compacto */
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-card-border);
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: var(--color-text-body);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab-btn span.tab-icon {
+    font-size: 1.2rem;
 }
 
 .tab-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--color-text-primary);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, var(--color-primary), rgba(99, 102, 241, 0.5));
-    border-color: rgba(99, 102, 241, 0.4);
-    color: white;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    background: linear-gradient(135deg, rgba(0, 255, 102, 0.1) 0%, rgba(0, 229, 255, 0.05) 100%);
+    border-color: rgba(0, 255, 102, 0.3);
+    color: var(--color-primary);
 }
 
-.tab-icon {
-    font-size: 1rem;
+.tab-btn.active::after {
+    content: '➔';
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    animation: slideRight 0.3s ease;
 }
 
-/* Visualizador de Celular */
-.phone-mockup-wrapper {
+.demo-card-highlight {
+    background: linear-gradient(135deg, rgba(0, 255, 102, 0.05) 0%, rgba(139, 92, 246, 0.03) 100%);
+    border: 1px solid rgba(0, 255, 102, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 30px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: 25px;
-    width: 100%;
-    margin-top: 10px;
+    gap: 15px;
 }
 
-/* Mockup de Smartphone CSS */
-.phone-mockup {
-    width: 270px;
-    height: 540px;
-    background: #0f121d;
-    border: 9px solid #1f2538;
-    border-radius: 36px;
-    position: relative;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
-                0 0 40px rgba(79, 70, 229, 0.15);
-    overflow: hidden;
+.demo-card-content h4 {
+    font-family: var(--font-heading);
+    color: var(--color-text-white);
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.demo-card-content p {
+    font-size: 0.8rem;
+    color: var(--color-text-body);
+}
+
+.btn-demo-link {
+    background: var(--color-primary);
+    color: #000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: var(--transition-smooth);
     flex-shrink: 0;
 }
 
-/* Elementos do Celular (Notch, Speaker, Home) */
-.phone-speaker {
-    width: 50px;
-    height: 4px;
-    background: #2e3752;
-    border-radius: 2px;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
+.btn-demo-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 255, 98, 0.3);
 }
 
-.phone-camera {
-    width: 10px;
-    height: 10px;
-    background: #1e2436;
+/* CSS do Mockup do Smartphone */
+.phone-mockup-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 460px; /* Largura perfeita para conter o celular de 270px e as setas laterais de 48px */
+    margin: 70px auto 0 auto; /* Margem superior aumentada para abrir espaço para o indicador e centralização */
+}
+
+.phone-nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
+    background: rgba(18, 20, 29, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 15;
+    transition: var(--transition-smooth);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.phone-nav-btn:hover {
+    background: rgba(18, 20, 29, 0.9);
+    border-color: rgba(140, 230, 0, 0.3);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.phone-nav-btn:active {
+    background: var(--color-primary);
+    color: #040508;
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 0 0 15px var(--color-primary);
+}
+
+.phone-category-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -58px; /* Puxado mais para cima para garantir distância no desktop e mobile */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap; /* Impede a quebra de linha que faria a caixa expandir para baixo */
+    background: rgba(140, 230, 0, 0.08);
+    border: 1px solid rgba(140, 230, 0, 0.25);
+    padding: 8px 20px;
+    border-radius: 30px;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(140, 230, 0, 0.05);
+    backdrop-filter: blur(8px);
+    user-select: none;
+    z-index: 20;
+}
+
+.phone-category-indicator i {
+    margin-right: 8px; /* Espaço entre o ícone FontAwesome e o texto */
+}
+
+.phone-mockup {
+    width: 270px; /* Reduzido de 310px para caber no viewport sem rolagem */
+    height: 530px; /* Restaurado para o tamanho real e estético de celular */
+    background-color: #000;
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 102, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 10;
+    transition: var(--transition-smooth);
+}
+
+@media (max-width: 850px) {
+    .phone-mockup {
+        width: 240px;
+        height: 470px; /* Restaurado proporcionalmente para tamanho real de celular */
+        border-radius: 32px;
+    }
+    .phone-mockup-wrapper {
+        max-width: 420px;
+    }
+}
+
+/* Notch Dinâmico */
+.phone-notch {
     position: absolute;
     top: 14px;
     left: 50%;
     transform: translateX(-50%);
+    width: 96px;
+    height: 22px;
+    background-color: #000;
+    border-radius: 12px;
     z-index: 100;
-    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
 }
 
-.phone-home-indicator {
-    width: 90px;
+.notch-camera {
+    width: 8px;
+    height: 8px;
+    background-color: #101010;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.05);
+}
+
+.notch-speaker {
+    width: 40px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.3);
+    background-color: #1a1a1a;
     border-radius: 2px;
+}
+
+/* Home Indicator */
+.phone-home-indicator {
     position: absolute;
-    bottom: 8px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
     z-index: 100;
     pointer-events: none;
 }
 
-/* Tela interna */
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: #111;
-    overflow: hidden; /* O iframe controla a própria rolagem */
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: #111;
     position: relative;
-    padding-top: 0;
-    padding-bottom: 0;
 }
 
-.phone-screen::-webkit-scrollbar {
-    display: none; /* Safari e Chrome */
-}
-
-/* Conteúdo da Tela */
-.screen-content {
-    display: none;
+/* Slider de Imagens Interno com Scroll */
+.phone-content-slider {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    transform: scale(0.97);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    position: relative;
 }
 
-.screen-content.active {
-    display: block;
-    height: 100%;
+.phone-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden; /* O iframe controla a própria rolagem */
+}
+
+.phone-slide.active {
     opacity: 1;
-    transform: scale(1);
+    z-index: 5;
 }
 
 .portfolio-iframe {
@@ -569,179 +853,810 @@ body {
     display: block;
 }
 
-.portfolio-img {
+.phone-slide img {
     width: 100%;
     height: auto;
     display: block;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-/* Cartão de Detalhes do Modelo */
-.model-info-card {
-    width: 100%;
-    min-height: 180px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 18px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* ==========================================
+   SEÇÃO DIFERENCIAIS
+   ========================================== */
+.features-grid {
+    display: grid;
+    grid-template-cols: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
 }
 
-.model-info {
-    display: none;
+.feature-box {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 32px 26px;
+    border-radius: 20px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease, 
+                background 0.4s ease;
+    text-align: left;
+    box-shadow: 
+        0 10px 30px -15px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.feature-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(140, 230, 0, 0.12), transparent 60%);
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.model-info.active {
+/* Efeito Hover exclusivo para Computador (Desktop) */
+@media (hover: hover) {
+    .feature-box:hover {
+        transform: translateY(-8px) scale(1.015);
+        border-color: rgba(140, 230, 0, 0.3);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+        box-shadow: 
+            0 20px 40px -10px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(140, 230, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .feature-box:hover::before {
+        opacity: 1;
+    }
+
+    .feature-box:hover .feature-num {
+        -webkit-text-stroke: 1.5px var(--color-primary);
+        filter: drop-shadow(0 0 8px rgba(140, 230, 0, 0.5));
+        transform: scale(1.05);
+    }
+
+    .feature-box:hover .feature-icon-wrapper {
+        background: rgba(140, 230, 0, 0.08);
+        border-color: rgba(140, 230, 0, 0.25);
+        color: var(--color-primary);
+        transform: rotate(-10deg) scale(1.08);
+        box-shadow: 
+            0 8px 16px rgba(140, 230, 0, 0.15), 
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .feature-box:hover h4 {
+        color: var(--color-primary);
+    }
+
+    .feature-box:hover p {
+        color: var(--color-text-light);
+    }
+}
+
+/* Feedback de Toque para Celular (Mobile Active) */
+@media (hover: none) {
+    .feature-box:active {
+        transform: scale(0.97);
+        border-color: rgba(140, 230, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.1s ease;
+    }
+}
+
+.feature-header,
+.feature-box h4,
+.feature-box p {
+    position: relative;
+    z-index: 2;
+}
+
+.feature-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.feature-num {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
+    line-height: 1;
+    transition: var(--transition-bounce);
+}
+
+.feature-icon-wrapper {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.2rem;
+    transition: var(--transition-bounce);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.feature-box h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.feature-box p {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    color: var(--color-text-body);
+    transition: color 0.3s ease;
+}
+
+/* ==========================================
+   SEÇÃO FAQ (CARD ACCORDION - DESIGN 3D)
+   ========================================== */
+.faq-accordion {
+    max-width: 750px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
+}
+
+.faq-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 24px 28px;
+    border-radius: 20px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease, 
+                background 0.4s ease;
+    text-align: left;
+    box-shadow: 
+        0 10px 30px -15px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.faq-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(140, 230, 0, 0.12), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Efeitos Hover exclusivos para Computadores (Desktop) */
+@media (hover: hover) {
+    .faq-card:hover {
+        transform: translateY(-5px) scale(1.005);
+        border-color: rgba(140, 230, 0, 0.3);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+        box-shadow: 
+            0 20px 40px -10px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(140, 230, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    .faq-card:hover::before {
+        opacity: 1;
+    }
+    
+    .faq-card:hover .faq-q-icon {
+        color: var(--color-primary);
+        filter: drop-shadow(0 0 6px rgba(140, 230, 0, 0.6));
+    }
+    
+    .faq-card:hover .faq-question-title h3 {
+        color: var(--color-primary);
+    }
+    
+    .faq-card:hover .faq-toggle-icon {
+        color: var(--color-primary);
+    }
+}
+
+/* Feedback de Toque para Celular (Mobile Active) */
+@media (hover: none) {
+    .faq-card:active {
+        transform: scale(0.98);
+        border-color: rgba(140, 230, 0, 0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.1s ease;
+    }
+}
+
+.faq-card.active {
+    border-color: rgba(140, 230, 0, 0.35);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    box-shadow: 
+        0 15px 30px -10px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(140, 230, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.faq-card.active::before {
     opacity: 1;
-    transform: translateY(0);
 }
 
-.model-info h3 {
+.faq-header-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    z-index: 2;
+}
+
+.faq-question-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.faq-q-icon {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.25);
+    transition: color 0.3s ease, filter 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.faq-card.active .faq-q-icon {
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 6px rgba(140, 230, 0, 0.6));
+}
+
+.faq-question-title h3 {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-white);
+    transition: color 0.3s ease;
+    line-height: 1.4;
+}
+
+.faq-card.active .faq-question-title h3 {
+    color: var(--color-primary);
+}
+
+.faq-toggle-icon {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.faq-card.active .faq-toggle-icon {
+    color: var(--color-primary);
+}
+
+.faq-card.active .faq-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.faq-card.active .faq-body {
+    max-height: 250px;
+    opacity: 1;
+}
+
+.faq-answer-content {
+    padding-top: 16px;
+    padding-left: 30px;
+}
+
+.faq-answer-content p {
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    line-height: 1.6;
+}
+
+/* ==========================================
+   SEÇÃO ORÇAMENTO & FORMULÁRIO
+   ========================================== */
+.budget-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.5);
+}
+
+.budget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-cols: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--color-text-primary);
+    color: var(--color-primary); /* Fallback para navegadores antigos */
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 2px;
 }
 
-.model-info p {
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--color-text-white);
+    font-family: var(--font-body);
     font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.5;
+    outline: none;
+    transition: var(--transition-smooth);
+    width: 100%;
 }
 
-.model-cta {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.15);
+}
+
+.form-group select option {
+    background-color: var(--color-bg-space);
+    color: var(--color-text-white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.15);
+}
+
+.submit-btn-wrapper {
+    margin-top: 10px;
+}
+
+.btn-form-submit {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #00d455 100%);
+    color: #000;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 16px 36px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 8px 24px -6px rgba(0, 255, 98, 0.4);
     display: inline-flex;
     align-items: center;
+    gap: 8px;
+    width: 100%;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #3b82f6 100%);
-    color: white;
-    text-decoration: none;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 12px;
-    margin-top: 8px;
-    transition: var(--transition-fast);
-    align-self: flex-start;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);
 }
 
-.model-cta:hover {
+.btn-form-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-    filter: brightness(1.1);
+    box-shadow: 0 12px 30px -4px rgba(0, 255, 98, 0.6);
 }
 
 /* ==========================================
    RODAPÉ (FOOTER)
    ========================================== */
-.main-footer {
-    text-align: center;
-    margin-top: 10px;
-    color: var(--color-text-muted);
-    font-size: 0.85rem;
+.footer {
+    background-color: #040508;
+    border-top: 1px solid var(--color-card-border);
+    padding: 60px 0 30px 0;
+    margin-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-cols: 1.5fr repeat(2, 0.75fr);
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.footer-info {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    animation: fadeIn 1s ease-out 0.6s both;
+    gap: 16px;
 }
 
-.copyright {
-    font-size: 0.75rem;
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.footer-logo img {
+    height: 52px;
+    width: auto;
+}
+
+.footer-logo-text {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.45rem;
+    color: var(--color-text-white);
+    letter-spacing: -0.04em;
+}
+
+.footer-logo-text span {
+    color: var(--color-primary);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin-left: 2px;
+}
+
+.footer-logo-text .power-icon {
+    font-size: 0.85em;
+    color: var(--color-primary);
+    margin: 0 1px;
+    vertical-align: -0.02em;
+}
+
+.footer-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+.footer-links h4 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: var(--color-text-body);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+    padding-left: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-bottom-links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-bottom-links a:hover {
+    color: var(--color-text-white);
 }
 
 /* ==========================================
-   ANIMAÇÕES DE ENTRADA E OUTROS EFEITOS
+   BOTÃO WHATSAPP FLUTUANTE
    ========================================== */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-whatsapp);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+    z-index: 999;
+    text-decoration: none;
+    font-size: 1.8rem;
+    transition: var(--transition-smooth);
+    animation: floatLogo 4s ease-in-out infinite alternate;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulseGlow {
-    from { opacity: 0.5; filter: blur(8px); }
-    to { opacity: 0.8; filter: blur(12px); }
-}
-
-@keyframes pulseIndicator {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(2.2);
-        opacity: 0;
-    }
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(34, 197, 94, 0.6);
+    background-color: #15803d;
 }
 
 /* ==========================================
-   RESPONSIVIDADE (MEDIA QUERIES)
+   MEDIA QUERIES (RESPONSIVIDADE)
    ========================================== */
-@media (min-width: 640px) {
-    body {
-        padding: 60px 20px;
-    }
-    
-    .container {
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-cols: 1fr;
+        text-align: center;
         gap: 50px;
     }
     
-    .profile-title {
-        font-size: 2.5rem;
+    .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
-    .portfolio-section {
-        padding: 40px 30px;
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+}
+
+@media (max-width: 576px) {
+    .portfolio-layout {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .phone-mockup-wrapper {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+        padding: 0;
+        margin: 70px auto 0 auto; /* Margem superior aumentada no mobile também */
+        max-width: 320px; /* Celular de 220px + setas de 40px com espaço */
+    }
+    
+    .phone-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(7, 8, 13, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 50px 0;
+        gap: 30px;
+        transition: var(--transition-smooth);
+        border-top: 1px solid var(--color-card-border);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .form-grid {
+        grid-template-cols: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-cols: 1fr;
         gap: 30px;
     }
     
-    .phone-mockup {
-        width: 250px;
-        height: 500px;
+    .section-title {
+        font-size: 1.8rem;
     }
     
-    .model-info-card {
-        flex-grow: 1;
-        width: 0; /* Permite expansão flexível */
-        min-height: 250px;
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .budget-container {
+        padding: 30px 20px;
+    }
+
+    /* Otimizações do portfólio interativo para tablet */
+    .phone-mockup-wrapper {
+        max-width: 380px;
+    }
+    
+    .phone-mockup {
+        width: 220px;
+        height: 430px; /* Restaurado proporcionalmente para tamanho real de celular */
+        border-radius: 28px;
+        padding: 6px;
+    }
+    
+    .phone-screen {
+        border-radius: 24px;
+    }
+    
+    .phone-notch {
+        width: 80px;
+        height: 18px;
+        top: 10px;
+        border-radius: 10px;
+        padding: 0 6px;
+    }
+    
+    .notch-camera {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .notch-speaker {
+        width: 30px;
+        height: 3px;
+    }
+    
+    .phone-home-indicator {
+        width: 80px;
+        bottom: 8px;
+    }
+
+    .demo-card-highlight {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+    }
+
+    .btn-demo-link {
+        width: 100%;
+        text-align: center;
     }
 }
+
+/* ==========================================
+   ANIMAÇÕES
+   ========================================== */
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+        box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.4);
+    }
+    70% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0 8px rgba(0, 255, 102, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+        box-shadow: 0 0 0 0 rgba(0, 255, 102, 0);
+    }
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes rotateTech {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================
+   SCROLL REVEAL (EFEITOS DE REVELAÇÃO)
+   ========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.left {
+    transform: translateX(-40px) translateY(0);
+}
+
+.reveal.right {
+    transform: translateX(40px) translateY(0);
+}
+
+.reveal.scale {
+    transform: scale(0.95) translateY(0);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
 
 /* ==========================================
    LOJA TESTE OVERLAY BADGE
@@ -770,4 +1685,11 @@ body {
 @keyframes pulseBadge {
     0% { transform: translateX(-50%) scale(0.96); opacity: 0.95; }
     100% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+}
+
+.phone-category-indicator.orange-theme {
+    background: rgba(249, 115, 22, 0.08) !important;
+    border-color: rgba(249, 115, 22, 0.25) !important;
+    color: #f97316 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(249, 115, 22, 0.05) !important;
 }
