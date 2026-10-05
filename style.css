@@ -862,6 +862,151 @@ body {
 }
 
 /* ==========================================
+   PROVAS SOCIAIS / CASOS REAIS
+   ========================================== */
+.real-cases-section {
+    padding: 100px 0 60px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.case-card-container {
+    max-width: 1000px;
+    margin: 40px auto 0 auto;
+    width: 100%;
+}
+
+.case-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.case-card:hover {
+    border-color: rgba(140, 230, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(140, 230, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.case-image-side {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.case-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.case-card:hover .case-image-side img {
+    transform: scale(1.03);
+}
+
+.case-info-side {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.case-badge {
+    background: rgba(140, 230, 0, 0.08);
+    border: 1px solid rgba(140, 230, 0, 0.2);
+    color: var(--color-primary);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.case-info-side h3 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    color: var(--color-text-white);
+    font-weight: 800;
+}
+
+.case-desc {
+    color: var(--color-text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.case-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+}
+
+.highlight-item i {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    width: 18px;
+    text-align: center;
+}
+
+.btn-visit-case {
+    background: var(--color-primary);
+    color: #000;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 10px 20px rgba(140, 230, 0, 0.2);
+    align-self: flex-start;
+}
+
+.btn-visit-case:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(140, 230, 0, 0.4);
+    background: var(--color-secondary);
+}
+
+@media (max-width: 992px) {
+    .case-card {
+        grid-template-columns: 1fr;
+    }
+    .case-image-side {
+        height: 280px;
+    }
+}
+
+/* ==========================================
    SEÇÃO DIFERENCIAIS
    ========================================== */
 .features-grid {
@@ -1004,6 +1149,158 @@ body {
     line-height: 1.6;
     color: var(--color-text-body);
     transition: color 0.3s ease;
+}
+
+/* ==========================================
+   SEÇÃO PLANOS & INVESTIMENTO
+   ========================================== */
+.pricing-grid {
+    display: grid;
+    grid-template-cols: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 850px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.pricing-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+    box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.6);
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 255, 102, 0.3);
+    box-shadow: 0 20px 45px -10px rgba(0, 255, 102, 0.15);
+}
+
+.pricing-card.featured {
+    background: linear-gradient(135deg, rgba(0, 255, 102, 0.05) 0%, rgba(140, 230, 0, 0.02) 100%);
+    border: 1.5px solid rgba(0, 255, 102, 0.4);
+    box-shadow: 0 20px 50px -15px rgba(0, 255, 102, 0.25);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #00d455 100%);
+    color: #000;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 5px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: 0 4px 15px rgba(0, 255, 102, 0.4);
+    white-space: nowrap;
+}
+
+.pricing-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-text-white);
+    margin-bottom: 8px;
+}
+
+.pricing-header p {
+    font-size: 0.85rem;
+    color: var(--color-text-body);
+    margin-bottom: 20px;
+}
+
+.pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pricing-price .currency {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.pricing-price .amount {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--color-text-white);
+    line-height: 1;
+}
+
+.pricing-price .period {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-left: 4px;
+}
+
+.pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    color: var(--color-text-body);
+}
+
+.pricing-features li i {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+}
+
+.btn-pricing {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--color-text-white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    text-align: center;
+    transition: var(--transition-smooth);
+    display: block;
+}
+
+.btn-pricing:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.pricing-card.featured .btn-pricing {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #00d455 100%);
+    color: #000;
+    border: none;
+    box-shadow: 0 6px 20px rgba(0, 255, 102, 0.35);
+}
+
+.pricing-card.featured .btn-pricing:hover {
+    box-shadow: 0 10px 28px rgba(0, 255, 102, 0.55);
+    filter: brightness(1.08);
 }
 
 /* ==========================================
@@ -1192,6 +1489,10 @@ body {
 /* ==========================================
    SEÇÃO ORÇAMENTO & FORMULÁRIO
    ========================================== */
+#orcamento {
+    padding-bottom: 25px;
+}
+
 .budget-container {
     max-width: 800px;
     margin: 0 auto;
@@ -1301,8 +1602,8 @@ body {
 .footer {
     background-color: #040508;
     border-top: 1px solid var(--color-card-border);
-    padding: 60px 0 30px 0;
-    margin-top: 60px;
+    padding: 30px 0 20px 0;
+    margin-top: 15px;
 }
 
 .footer-grid {
@@ -1310,7 +1611,7 @@ body {
     grid-template-cols: 1.5fr repeat(2, 0.75fr);
     gap: 40px;
     text-align: left;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .footer-info {
@@ -1391,7 +1692,7 @@ body {
 
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 30px;
+    padding-top: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
