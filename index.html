@@ -654,10 +654,11 @@
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Contato</h4>
+                    <h4>Contato & Atendimento</h4>
                     <ul>
                         <li><a href="mailto:taondigital@outlook.com"><i class="fa-regular fa-envelope"></i> taondigital@outlook.com</a></li>
-                        <li><a href="https://wa.me/5542999164041" target="_blank"><i class="fa-brands fa-whatsapp"></i> (42) 99916-4041</a></li>
+                        <li><a href="https://wa.me/5542999424174" target="_blank"><i class="fa-brands fa-whatsapp"></i> (42) 99942-4174 (PR)</a></li>
+                        <li><a href="https://wa.me/5511952141457" target="_blank"><i class="fa-brands fa-whatsapp"></i> (11) 95214-1457 (SP)</a></li>
                     </ul>
                 </div>
             </div>
@@ -672,8 +673,8 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Flutuante -->
-    <a href="https://wa.me/5542999164041?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20sites%20profissionais%20da%20TaOn%20Digital." class="whatsapp-float" target="_blank" title="Fale Conosco no WhatsApp">
+    <!-- WhatsApp Flutuante com Rodízio Inteligente -->
+    <a href="https://wa.me/5542999424174?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20sites%20profissionais%20da%20TaOn%20Digital." class="whatsapp-float" id="btn-float-whatsapp" target="_blank" title="Fale Conosco no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -939,6 +940,10 @@
                     const projectType = document.getElementById('usr-project').value;
                     const messageText = document.getElementById('usr-message').value;
 
+                    // Rodízio Inteligente de Leads (50% / 50%) entre os Sócios
+                    const taonNumbers = ["5542999424174", "5511952141457"];
+                    const selectedNumber = taonNumbers[Math.floor(Math.random() * taonNumbers.length)];
+
                     const formattedMessage = 
                         `🚀 *NOVA SOLICITAÇÃO DE ORÇAMENTO - TAON DIGITAL* 🚀\n` +
                         `----------------------------------\n` +
@@ -951,7 +956,7 @@
                         `----------------------------------\n` +
                         `🔗 _Mensagem enviada através do site corporativo._`;
 
-                    const whatsappUrl = `https://wa.me/5542999164041?text=${encodeURIComponent(formattedMessage)}`;
+                    const whatsappUrl = `https://wa.me/${selectedNumber}?text=${encodeURIComponent(formattedMessage)}`;
                     window.open(whatsappUrl, '_blank');
                 });
             }
